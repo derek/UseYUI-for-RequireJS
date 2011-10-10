@@ -31,7 +31,7 @@ define(
     "use strict";
     // because it's easier then typeof, and undefined isn't allowed in ES5
     var notDefined, Y,
-        defaultSrc = 'yui-min.js';
+        defaultSrc = 'yui-min-341.js';
         
     function loadModule(name, load) {
         // split the name into an array, with modules that YUI.use

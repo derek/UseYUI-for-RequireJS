@@ -1,50 +1,34 @@
 <!DOCTYPE html>
 <html>
 <body>
-<div id="someNode"></div>
+    <script src="http://yuim.in/"></script>
+    <script src="require-0.27.1.js"></script>
+    <script>
+        
+        console.log('there are 5 tests');
+        require(['YUI!dd,anim', 'YUI!cookie'], function (A, B, C) {
+                var a = new A.Anim();
+                console.log("Test 1: " + (typeof A.Anim   !== 'undefined' ? 'passed' : 'failed' ));
+                console.log("Test 2: " + (typeof A.Cookie === 'undefined' ? 'passed' : 'failed' ));
+               // console.log(A);
+                console.log("Test 3: " + (typeof B.Cookie !== 'undefined' ? 'passed' : 'failed' ));
+                console.log(C); //undefined
+            }
+        );
 
-<script src="require-0.27.1.js"></script>
-<script>
-if (typeof console == 'undefined') {
-    console = {
-        log : function (d) {
-            document.getElementById('someNode').innerHTML += d;
-        }
-    };
-}
+        require(['YUI!yql'], function (Y) {
+            console.log("Test 4: " + (typeof Y.YQL !== 'undefined' ? 'passed' : 'failed' ));
+        });
 
-console.log('there are 5 tests');
-require({
-        YUI : {
-            src     : 'yui-min.js',
-            timeout : 1000
-        }
-    },
-    ['UseYUI!dd,anim',
-     'UseYUI!cookie'], function (Y, X) {
-    var a = new Y.Anim();
-    console.log((typeof Y.Anim !== 'undefined' ? 'passed' : 'failed' ) + 
-                 ' test 1');
-    console.log((typeof Y.Cookie === 'undefined' ? 'passed' : 'failed' ) + 
-                 ' test 2');
-    console.log((typeof X.Cookie !== 'undefined' ? 'passed' : 'failed' ) + 
-                 ' test 3');
-});
-
-require(
-    ['UseYUI!cookie'], function (Y)
-{
-    console.log((typeof Y.Cookie !== 'undefined' ? 'passed' : 'failed' ) + 
-                 ' test 4');
-});
-
-require(
-    { YUI : 'yui-min.js'},
-    ['UseYUI!cookie'], function (Y)
-{
-    console.log((typeof Y.Cookie !== 'undefined' ? 'passed' : 'failed' ) + 
-                 ' test 5');
-});
-</script>
+        require({YUI : { src : 'yui-min-341.js'}}, ['YUI!cookie'], function (Y) {
+            console.log("Test 5: " + (typeof Y.Cookie !== 'undefined' ? 'passed' : 'failed' ));
+            console.log("Test 6: " + (typeof Y.YQL === 'undefined' ? 'passed' : 'failed' ));
+            console.log(Y);
+        });
+        
+        require(['YUI!foobar'], function (Y) {
+            //This will throw 'NOT loaded' warnings in the console.
+        });
+    </script>
 </body>
 </html>
